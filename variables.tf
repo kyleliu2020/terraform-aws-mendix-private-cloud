@@ -8,6 +8,12 @@ variable "domain_name" {
   description = "Domain name"
 }
 
+variable "hostedzone_existed" {
+  type        = bool
+  description = "Hosted Zone related to domain_name is existed in current AWS account"
+  default     = false
+}
+
 variable "s3_bucket_name" {
   type        = string
   description = "S3 bucket name"

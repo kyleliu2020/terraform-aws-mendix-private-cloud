@@ -7,7 +7,13 @@ module "vpc" {
   region = var.aws_region
 }
 
+data "aws_route53_zone" "cluster_dns" {
+  count = var.hostedzone_existed ? 1 : 0
+  name  = var.domain_name
+}
+
 resource "aws_route53_zone" "cluster_dns" {
+  count         = var.hostedzone_existed ? 0 : 1
   name          = var.domain_name
   force_destroy = true
 }
